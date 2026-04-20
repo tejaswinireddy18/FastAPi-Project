@@ -13,8 +13,13 @@ A complete FastAPI starter project with:
 ```text
 Fastapi-project-task/
 |-- main.py
+|-- Dockerfile
+|-- .dockerignore
 |-- requirements.txt
 |-- .env
+|-- .github/
+|   `-- workflows/
+|       `-- ci.yml
 |-- routers/
 |   |-- __init__.py
 |   |-- users.py
@@ -104,3 +109,29 @@ The test suite covers:
 - root health endpoint
 - users CRUD flow
 - items CRUD flow
+
+## Docker Run
+
+Build the image:
+
+```powershell
+docker build -t fastapi-project-task .
+```
+
+Run the container:
+
+```powershell
+docker run --name fastapi-project-task -p 8000:8000 fastapi-project-task
+```
+
+Stop and remove container:
+
+```powershell
+docker stop fastapi-project-task
+docker rm fastapi-project-task
+```
+
+## CI (GitHub Actions)
+
+CI workflow file is at `.github/workflows/ci.yml`.
+It runs `pytest -v` on each push and pull request to `main`.
